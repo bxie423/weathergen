@@ -84,12 +84,12 @@ def forecast(climate, season):
     tempdiff = floor(random.normalvariate(lowdiff, .25 * tempvar))
     low = high - 5 - (0 if tempdiff < 0 else tempdiff)
 # Let's make up some reasonable numbers for these other variables
-    wind = floor(windy * random.uniform(0,5))
+    wind = floor(windy * random.normalvariate(2,1))
     raining = True if precip > random.random() else False
 # Chances of precipitation should be expressed in multiples of 10 percent
     chanceofrain = 0 if not raining else 10 * floor(random.normalvariate(8, 2))
 # It should be more humid if it is raining
-    humidity = floor(100 * (random.normalvariate(.3 + precip/2, .15) if not raining else random.normalvariate(.8 + precip/4, .1)))
+    humidity = floor(100 * (random.normalvariate(.35 + precip/1.5, .15) if not raining else random.normalvariate(.8 + precip/4, .1)))
 # Air pressure depends on temperature and humidity.  Want this to two decimal places.
     barometer = floor(100 * (29.5 + high/200 + humidity/500 + random.uniform(0,.05)))
     currently = random.randrange(low,high)
